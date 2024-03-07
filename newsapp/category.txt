@@ -1,0 +1,32 @@
+  <Route path='/business'><News pageSize='9' key={this.state.textVal} country={this.state.textVal} category="business"/></Route>
+  <Route path='/entertainment'><News pageSize='9' key={this.state.textVal} country={this.state.textVal} category="entertainment"/></Route>
+  <Route path='/'><News pageSize='9' key={this.state.textVal} country={this.state.textVal} category="general"/></Route>
+  <Route path='/health'><News pageSize='9' key={this.state.textVal} country={this.state.textVal} category="health"/></Route>
+  <Route path='/science'><News pageSize='9' key={this.state.textVal} country={this.state.textVal} category="science"/></Route>
+  <Route path='/sports'><News pageSize='9' key={this.state.textVal} country={this.state.textVal} category="sports"/></Route>
+  <Route path='/technology'><News pageSize='9' key={this.state.textVal} country={this.state.textVal} category="technology"/></Route>
+
+
+  <Route path='/'><News pageSize='9' key={this.state.textVal} country={this.state.textVal} category="sports"/></Route>
+
+                        <li className="nav-item dropdown">
+                          <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Category
+                          </a>
+                          <ul className="dropdown-menu">
+                            <li className="nav-item dropdown">
+                              <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Topics
+                              </a>
+                              <ul className="dropdown-menu">
+                                <li><Link className="dropdown-item" to="/business">Business</Link></li>
+                                <li><Link className="dropdown-item" to="/entertainment">Entertainment</Link></li>
+                                <li><Link className="dropdown-item" to="/">General</Link></li>
+                                <li><Link className="dropdown-item" to="/health">Health</Link></li>
+                                <li><Link className="dropdown-item" to="/science">Science</Link></li>
+                                <li><Link className="dropdown-item" to="/sports">Sports</Link></li>
+                                <li><Link className="dropdown-item" to="/technology">Technology</Link></li>
+                              </ul>
+                            </li>
+                          </ul>
+                      </li>
