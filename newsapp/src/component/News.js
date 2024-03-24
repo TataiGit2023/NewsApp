@@ -13,7 +13,7 @@ export class News extends Component {
             loading: true,
             page:1,
             totalResults:0,
-            n:0
+            n:[]
       }
     }
 
@@ -21,7 +21,7 @@ export class News extends Component {
       let data = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=965c489d7bab42a5a2f7b2a1bde165a3&pageSize=${this.props.pageSize}&page=${this.state.page}`);
       let parsedData = await data.json();
       console.log(parsedData);
-      this.setState({n: parsedData.articles.length,articles: parsedData.articles.filter((ele)=>{return (ele.description && ele.title && ele.description!=="[Removed]")}), loading:false, totalResults:parsedData.totalResults});
+      this.setState({n: parsedData.articles,articles: parsedData.articles.filter((ele)=>{return (ele.description && ele.title && ele.description!=="[Removed]")}), loading:false, totalResults:parsedData.totalResults});
       console.log("data"+this.state.n);
     }
 
@@ -29,32 +29,13 @@ export class News extends Component {
     {
       this.update(this.state.page);
     }
-
-    // handlePrev=async ()=>{
-
-    //   this.setState({
-    //     loading:true,
-    //     page:this.state.page-1
-    //   })
-
-    //   this.update(this.state.page-1);
-    // } 
-    // handleNext=async()=>{
-
-    //   this.setState({
-    //     loading:true,
-    //     page:this.state.page+1
-    //   })
-
-    //   this.update(this.state.page+1);
-    // } 
     
     fetchMoreData = async() =>{
       this.setState({page:this.state.page+1})
       let data = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=965c489d7bab42a5a2f7b2a1bde165a3&pageSize=${this.props.pageSize}&page=${this.state.page+1}`);
       let parsedData = await data.json();
       console.log(parsedData);
-      this.setState({n: this.state.n + parsedData.articles.length,articles: this.state.articles.concat(parsedData.articles.filter((ele)=>{return (ele.description && ele.title && ele.description!=="[Removed]")}))});
+      this.setState({n: this.state.n.concat(parsedData.articles),articles: this.state.articles.concat(parsedData.articles.filter((ele)=>{return (ele.description && ele.title && ele.description!=="[Removed]")}))});
       console.log("more data"+this.state.n);
       console.log(this.props.pageSize);
     }
@@ -69,7 +50,7 @@ export class News extends Component {
           <InfiniteScroll
               dataLength={this.state.articles.length} //This is important field to render the next data
               next={this.fetchMoreData}
-              hasMore={this.state.n!==this.state.totalResults}
+              hasMore={this.state.n.length!==this.state.totalResults}
               loader={<h4>Loading...</h4>}
           >
               <div className='container'>
@@ -84,11 +65,6 @@ export class News extends Component {
               </div>
           </InfiniteScroll>
         </>
-
-        {/* <div className='d-flex justify-content-evenly'>
-        <button type="button " disabled={this.state.page<=1} className="btn btn-primary" onClick={this.handlePrev}>&larr; Prev</button>
-        <button type="button" disabled={this.state.page>Math.ceil(this.state.articles.length/this.props.pageSize)} className="btn btn-primary" onClick={this.handleNext}>Next &rarr;</button>
-        </div> */}
 
       </div>
     )
