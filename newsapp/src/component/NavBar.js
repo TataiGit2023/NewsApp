@@ -16,9 +16,6 @@ export class NavBar extends Component {
                         <li className="nav-item">
                         <Link className="nav-link active" aria-current="page" to="/">Home</Link>
                         </li>
-                        <li className="nav-item">
-                        <Link className="nav-link active" aria-current="page" to="/detailedNews">DetailedNews</Link>
-                        </li>
                         <li className="nav-item dropdown">
                           <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Category
@@ -36,8 +33,8 @@ export class NavBar extends Component {
                     </ul>
                 </div>
                 <form className="d-flex" role="search">
-                  <input className="form-control me-2" id="form" type="search"   placeholder="Search......" aria-label="Search"/>
-                  <button className="btn btn-outline-success " onClick={this.props.func2} type="submit">Search</button>
+                  <input className="form-control me-2 my-2" id="form" type="search"   placeholder="Search......" aria-label="Search"/>
+                  <button className="btn btn-outline-success my-2" onClick={this.props.func2} type="submit" ><Link className="nav-link active" aria-current="page" to="/detailedNews">Search</Link></button>
                 </form>
             </div>
         </nav>

@@ -2,7 +2,7 @@ import './App.css';
 import React, { Component } from 'react'
 import NavBar from './component/NavBar';
 import News from './component/News';
-import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useNavigate} from "react-router-dom";
 import DetailedNews from './component/DetailedNews';
 
 export default class App extends Component {  
@@ -11,9 +11,10 @@ export default class App extends Component {
     super();
     this.state={
       textVal:'in',
-      q:'bitcoin'
+      q:'india'
     }
   }
+
   handleonclick=(event)=>{
     event.preventDefault();
     const text = document.querySelector("input").value;
@@ -27,20 +28,12 @@ export default class App extends Component {
     }
   }
 
-  handleonclickCountry =(event)=>{
-    const code = event.target.getAttribute("id");
-    console.log(code);
-    
-    this.setState({
-      textVal:code
-    })
-  }
 
   render() {
     return (
         <div>
           <Router>
-            <NavBar func={this.handleonclickCountry} func2={this.handleonclick}/>
+            <NavBar func2={this.handleonclick}/>
             <Routes>
                 <Route exact path='/business' element={<News pageSize='9' key={this.state.textVal+"business"} country={this.state.textVal} category="business"/>}/>
                 <Route exact path='/entertainment'element={<News pageSize='9' key={this.state.textVal+"entertainment"} country={this.state.textVal} category="entertainment"/>}/>
